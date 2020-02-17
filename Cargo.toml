@@ -31,13 +31,14 @@ bitflags = "1.2.1"
 
 [lib]
 name = "net_gazer_traceroute"
-crate-type = ["dylib"]
+crate-type = ["cdylib"]
 
 
 
 
 [package.metadata.deb]
-depends = "$auto, net-gazer"
+#depends = "$auto, net-gazer"
+depends = "net-gazer"
 section = "lib"
 priority = "optional"
 assets = [

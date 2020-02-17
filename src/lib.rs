@@ -13,8 +13,7 @@ const NAME:&str="Traceroute plugin";
 
 #[derive(Default)]
 pub struct TraceRoutePlugin{
-    app:Option<app::App>,
-
+    app:Option<app::App>
 }
 
 impl Plugin for TraceRoutePlugin{
@@ -46,7 +45,7 @@ impl Plugin for TraceRoutePlugin{
     }
 
     fn process(&self, pkt:&EthernetPacket){
-        //info!("Processing with \"{}\"(message_id:{})", NAME,ID);
+        info!("Processing with \"{}\"(message_id:{})", NAME,ID);
         self.app.as_ref().unwrap().process(pkt);
     }
 }
