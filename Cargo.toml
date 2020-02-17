@@ -1,0 +1,44 @@
+[package]
+name = "libnet_gazer_traceroute"
+version = "0.1.0"
+authors = ["Serguei Oleinik <46495908+s-oleinik@users.noreply.github.com>"]
+edition = "2018"
+description = "net-gazer - traceroute plugin"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+net-gazer-core = { git = "https://github.com/soleinik/net-gazer-core", branch = "master"}
+
+log = "0.4.8"
+env_logger = "0.7.1"
+
+pnet = "0.25.0"
+
+[lib]
+name = "net_gazer_traceroute"
+crate-type = ["dylib"]
+
+
+
+
+[package.metadata.deb]
+depends = "$auto, net-gazer"
+section = "lib"
+priority = "optional"
+assets = [
+    # binary
+    ["target/release/libnet_gazer_traceroute.so", "usr/local/lib/net-gazer/", "755"],
+    # config
+    ["etc/net-gazer/libnet-gazer-traceroute.toml", "usr/local/etc/net-gazer/libnet-gazer-traceroute.toml", "644"],
+    # ldconfig
+    ["etc/misc/ld.so.conf.d/libnet-gazer-traceroute.conf", "etc/ld.so.conf.d/libnet-gazer-traceroute.conf", "644"],
+    # assets
+    ["LICENSE", "/usr/share/doc/net-gazer/LICENSE-traceroute-plugin", "644"],
+]
+
+maintainer-scripts = "etc/misc/pkg-scripts"
+conf-files=[
+    "usr/local/etc/net-gazer/libnet-gazer-traceroute.toml",
+]
+
