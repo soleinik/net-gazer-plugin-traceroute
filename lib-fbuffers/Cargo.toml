@@ -8,5 +8,4 @@ edition = "2018"
 
 [dependencies]
 lib-data = { path="../lib-data" }
-
 flatbuffers = "0.6.1"

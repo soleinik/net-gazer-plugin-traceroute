@@ -21,7 +21,6 @@ pub struct TraceRoutePlugin{
 impl Plugin for TraceRoutePlugin{
 
     fn get_name(&self)->&str{NAME}
-
     fn get_id(&self) -> u8 {ID}
  
     fn on_load(&mut self, iface:&NetworkInterface, tx:CoreSender){
@@ -35,7 +34,6 @@ impl Plugin for TraceRoutePlugin{
                 }
             })
             .find(|net| net.is_some()).flatten().unwrap();
-
         
         self.app = Some(app::App::new(*net, tx));
 
