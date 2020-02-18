@@ -2,6 +2,8 @@
 
 use flatbuffers::FlatBufferBuilder;
 
+#[allow(dead_code)]
+#[allow(unused_imports)]
 mod traceroute_generated;
 use traceroute_generated::*;
 

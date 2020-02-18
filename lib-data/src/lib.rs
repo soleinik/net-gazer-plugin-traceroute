@@ -1,7 +1,6 @@
 #[macro_use] extern crate failure;
 #[macro_use] extern crate log;
 
-use std::collections::BTreeSet;
 
 use std::sync::mpsc::{ Sender, Receiver };
 use std::net::Ipv4Addr;
@@ -16,6 +15,11 @@ mod conf;
 
 pub use errors::*;
 pub use conf::*;
+
+pub const PLUGIN_ID:u8=net_gazer_core::PLUGIN_ID_TRACEROUTE;
+
+
+
 
 pub type ReceiverChannel = Receiver<AppData>;
 pub type SenderChannel = Sender<AppData>;

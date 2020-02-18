@@ -8,7 +8,9 @@ use core::*;
 use pnet::packet::ethernet::EthernetPacket;
 use pnet::datalink::NetworkInterface;
 
-const ID:u8=1;
+
+
+const ID:u8=lib_data::PLUGIN_ID;
 const NAME:&str="Traceroute plugin";
 
 #[derive(Default)]
@@ -35,7 +37,7 @@ impl Plugin for TraceRoutePlugin{
             .find(|net| net.is_some()).flatten().unwrap();
 
         
-        self.app = Some(app::App::new(net, tx));
+        self.app = Some(app::App::new(*net, tx));
 
         info!("Hello from \"{}\"(message_id:{}), ! ", NAME, ID);
     }
@@ -45,7 +47,7 @@ impl Plugin for TraceRoutePlugin{
     }
 
     fn process(&self, pkt:&EthernetPacket){
-        info!("Processing with \"{}\"(message_id:{})", NAME,ID);
+        trace!("Processing with \"{}\"(message_id:{})", NAME,ID);
         self.app.as_ref().unwrap().process(pkt);
     }
 }
@@ -55,6 +57,3 @@ pub extern "C" fn net_gazer_plugin_new () -> * mut dyn Plugin{
      let boxed:Box<TraceRoutePlugin> = Box::new(TraceRoutePlugin::default());
      Box::into_raw(boxed)
 }
-
-
-

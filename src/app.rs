@@ -29,7 +29,7 @@ pub struct App {
 
 
 impl App {
-    pub fn new(net:&Ipv4Network, tx:CoreSender) -> Self{
+    pub fn new(net:Ipv4Network, tx:CoreSender) -> Self{
 
         let ip = net.ip();
 
@@ -41,7 +41,7 @@ impl App {
         lib_tracer::timer_start(data_sender.clone());
 
         App{
-            net:net.clone(),
+            net,
             ip,
             data_sender
         }
