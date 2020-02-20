@@ -35,7 +35,7 @@ impl App {
 
         //communication via async channels - unbounded queue, watch for OOM. 
         // 1:1 producer:consumer
-        let (data_sender, data_receiver): (lib_data::SenderChannel,lib_data::ReceiverChannel) = mpsc::channel();
+        let (data_sender, data_receiver): (lib_data::SenderChannel,lib_data::ReceiverChannel) = mpsc::sync_channel(512);
 
         lib_tracer::start(data_receiver, ip, tx);
         lib_tracer::timer_start(data_sender.clone());

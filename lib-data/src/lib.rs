@@ -2,7 +2,7 @@
 #[macro_use] extern crate log;
 
 
-use std::sync::mpsc::{ Sender, Receiver };
+use std::sync::mpsc::{ SyncSender, Receiver };
 use std::net::Ipv4Addr;
 use std::fmt;
 
@@ -22,7 +22,7 @@ pub const PLUGIN_ID:u8=net_gazer_core::PLUGIN_ID_TRACEROUTE;
 
 
 pub type ReceiverChannel = Receiver<AppData>;
-pub type SenderChannel = Sender<AppData>;
+pub type SenderChannel = SyncSender<AppData>;
 
 
 const MAX_TTL:u8 = 64;

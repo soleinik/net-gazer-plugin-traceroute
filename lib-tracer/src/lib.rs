@@ -7,13 +7,13 @@ mod consume;
 use std::thread;
 use std::collections::HashMap;
 use std::net::Ipv4Addr;
-use std::sync::mpsc::Sender;
+use std::sync::mpsc::SyncSender;
 
 use lib_data::{AppData, ReceiverChannel, AppTcp, AppTraceRoute, AppTraceRouteTask};
 
 
 pub type CommMessage = (u8, Vec<u8>);
-pub type CommTxChannel = Sender<CommMessage>;
+pub type CommTxChannel = SyncSender<CommMessage>;
 
 
 pub fn start(rx:ReceiverChannel, ip: std::net::Ipv4Addr,comm_tx:CommTxChannel){
