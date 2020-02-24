@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 use flatbuffers::FlatBufferBuilder;
 
 #[allow(dead_code)]
