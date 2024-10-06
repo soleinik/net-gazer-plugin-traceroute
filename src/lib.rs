@@ -5,8 +5,8 @@ extern crate net_gazer_core as core;
 mod app;
 
 use core::*;
-use pnet::packet::ethernet::EthernetPacket;
 use pnet::datalink::NetworkInterface;
+use pnet::packet::ethernet::EthernetPacket;
 
 
 
@@ -44,14 +44,14 @@ impl Plugin for TraceRoutePlugin{
         info!("Good bye from \"{}\"(message_id:{})! ", NAME, ID);
     }
 
-    fn process(&self, pkt:&EthernetPacket){
+    fn process(&self, pkt: &EthernetPacket){
         trace!("Processing with \"{}\"(message_id:{})", NAME,ID);
         self.app.as_ref().unwrap().process(pkt);
     }
 }
 
 #[no_mangle]
-pub extern "C" fn net_gazer_plugin_new () -> * mut dyn Plugin{
+pub extern "C" fn net_gazer_plugin_new () -> * mut TraceRoutePlugin{
      let boxed:Box<TraceRoutePlugin> = Box::new(TraceRoutePlugin::default());
      Box::into_raw(boxed)
 }

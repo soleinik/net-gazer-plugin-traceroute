@@ -1,3 +1,4 @@
+use config::Config;
 use structopt::StructOpt;
 use pnet::datalink;
 use std::path::Path;
@@ -68,15 +69,14 @@ impl OptConf{
             let cfg_file = Path::new(&cfg_file).canonicalize().unwrap();
             let cfg_file = cfg_file.to_str().unwrap();
             info!("Loading configuration from {}...", cfg_file);
-            let mut settings = config::Config::default();
-            settings.merge(config::File::with_name(cfg_file)).unwrap();
+            let settings = Config::builder().add_source(config::File::with_name(cfg_file)).build().expect("Filed to load config file");
 
             if self.iface.is_none(){
-                self.iface = settings.get_str(KEY_IFACE).ok();
+                self.iface = settings.get_string(KEY_IFACE).ok();
             }    
 
             if self.reporting_url.is_none(){
-                self.reporting_url = settings.get_str(KEY_REPORTING_URL).ok();
+                self.reporting_url = settings.get_string(KEY_REPORTING_URL).ok();
             }    
         }
 

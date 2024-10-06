@@ -10,7 +10,7 @@ edition = "2018"
 lib-data = { path="../lib-data" }
 lib-fbuffers = { path="../lib-fbuffers" }
 
-log = "0.4.8"
-pnet = "0.23"
+log = "0.4"
+pnet = "0.35"
 
 async-std = { version="1.4", default-features = true, features=["attributes"] }

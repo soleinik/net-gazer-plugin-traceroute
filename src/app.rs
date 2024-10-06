@@ -49,6 +49,7 @@ impl App {
 
 
     pub fn process(&self, ethernet_packet: &EthernetPacket) {
+        //let ethernet_packet =EthernetPacket::new(ethernet_packet.packet()).unwrap();
         match ethernet_packet.get_ethertype() {
             EtherTypes::Ipv4 => {
                 if let Some(ip4pkt) = Ipv4Packet::new(ethernet_packet.payload()) {
@@ -247,7 +248,7 @@ impl App {
 
 use pnet::packet::tcp::TcpFlags;
 bitflags! {
-    struct Flags: u16 {
+    struct Flags: u8 {
         const SYN = TcpFlags::SYN; //2
         const URG = TcpFlags::URG; //32
         const ACK = TcpFlags::ACK; //16
@@ -260,7 +261,7 @@ bitflags! {
     }
 }
 
-fn has_bit(flags: u16, bit: Flags) -> bool {
+fn has_bit(flags: u8, bit: Flags) -> bool {
     if let Some(s) = Flags::from_bits(flags) {
         return s.contains(bit);
     }

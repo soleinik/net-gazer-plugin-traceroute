@@ -17,17 +17,18 @@ members=[
 ]
 
 [dependencies]
-net-gazer-core = { git = "https://github.com/soleinik/net-gazer-core", branch = "master"}
+#net-gazer-core = { git = "https://github.com/soleinik/net-gazer-core", branch = "master"}
+net-gazer-core = { path = "../net-gazer-core"}
 lib-tracer = { path="./lib-tracer" }
 lib-data = { path="./lib-data" }
 lib-fbuffers = { path="./lib-fbuffers" }
 
-log = "0.4.8"
-env_logger = "0.7.1"
+log = "0.4"
+env_logger = "0.11"
 
-pnet = "0.25.0"
-ipnetwork = "^0.15.0"
-bitflags = "1.2.1"
+pnet = "0.35"
+ipnetwork = "0.20"
+bitflags = "2.6"
 
 [lib]
 name = "net_gazer_traceroute"
