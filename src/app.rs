@@ -49,8 +49,7 @@ impl App {
 
 
     pub fn process(&self, ethernet_packet: &EthernetPacket) {
-        //let ethernet_packet =EthernetPacket::new(ethernet_packet.packet()).unwrap();
-        match ethernet_packet.get_ethertype() {
+            match ethernet_packet.get_ethertype() {
             EtherTypes::Ipv4 => {
                 if let Some(ip4pkt) = Ipv4Packet::new(ethernet_packet.payload()) {
                     match ip4pkt.get_next_level_protocol() {
